@@ -16,9 +16,17 @@ def run_test(name, mutate, expected):
         root=Path(td)
         for f in FILES:shutil.copy2(ROOT/f,root/f)
         mutate(root)
-        result=subprocess.run([sys.executable,str(root/'verify.py')],capture_output=True,text=True,timeout=30)
+        command=[sys.executable]
+        if sys.flags.optimize:
+            command.append('-O')
+        command.extend(['-B',str(root/'verify.py')])
+        result=subprocess.run(command,capture_output=True,text=True,timeout=30)
         text=result.stdout+result.stderr
-        assert result.returncode!=0 and expected in text, (name,result.returncode,text)
+        if result.returncode==0 or expected not in text:
+            raise RuntimeError(
+                f'{name}: corrupted certificate was not rejected as expected; '
+                f'returncode={result.returncode}; output={text!r}'
+            )
         return {'test':name,'result':'PASS: corruption rejected','expected_failure':expected}
 
 def alter_identity(root):
