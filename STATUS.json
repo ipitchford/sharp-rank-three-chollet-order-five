@@ -1,0 +1,43 @@
+{
+  "date": "2026-10-19",
+  "claim": "For every real 5x5 correlation matrix C of rank <=3, 48 per(C o C) <=13 per(C)^2, with equality exactly at signed permutations of J2 direct-sum E3. Consequently, for real 5x5 positive-semidefinite A and B of rank <=3, per(A o B) <= (13/48) per(A) per(B), with complete equality classification.",
+  "status": "EXACT_COMPUTER_ASSISTED_PROOF_REPLAYED",
+  "complete_equality_classification": true,
+  "mixed_extension": {
+    "status": "ANALYTIC_CONSEQUENCE_WITH_EXACT_REGRESSION_CHECK",
+    "sharp": true,
+    "positive_diagonal_equality": "common 2+3 block partition after diagonal normalization, with independent diagonal sign switches",
+    "zero_diagonal_equality": "either matrix has a zero row and both sides vanish"
+  },
+  "proof_critical_dependencies": [
+    "elementary real Gram-matrix representation",
+    "cross-product and traceless-tensor inner-product identities",
+    "finite supplied rational certificate",
+    "exact standard-library checker",
+    "written equality reduction",
+    "permutation-monomial Cauchy-Schwarz transfer"
+  ],
+  "unverified_or_not_claimed": [
+    "independent external peer review",
+    "proof-assistant formalisation",
+    "exhaustive priority audit",
+    "certificate generator or rational-repair trace",
+    "complex-matrix extension",
+    "general Chollet conjecture"
+  ],
+  "numerical_search_is_proof": false,
+  "numerical_starts": 500,
+  "rational_gram_dimensions": [
+    52,
+    96,
+    140
+  ],
+  "rational_gram_lower_bound": "1/5",
+  "determinant_terms": 25,
+  "permutations": 120,
+  "equality_identities": 4,
+  "python_used": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+  "platform_used": "Linux-6.18.44-x86_64-with-glibc2.41",
+  "source": "https://doi.org/10.20944/preprints202608.1240.v1",
+  "source_search_date": "2026-10-19"
+}

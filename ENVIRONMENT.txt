@@ -1,0 +1,10 @@
+Minimum checker environment:
+- Python 3.9 or later
+- Python standard library only for verify.py, test_mutations.py and verify_mixed_extension.py
+
+Recorded revision replay:
+- macOS 27.0.1 arm64
+- Python 3.14.7
+- NumPy 2.4.2 only for the separate review implementation, which is not part of the public proof package
+
+Discovery/search.py additionally requires NumPy, SciPy and Numba and is not proof-critical.

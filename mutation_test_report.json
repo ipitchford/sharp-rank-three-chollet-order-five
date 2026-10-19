@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "tests": [
+    {
+      "test": "positivity",
+      "result": "PASS: corruption rejected",
+      "expected_failure": "Q >= (1/5)I not certified"
+    },
+    {
+      "test": "global polynomial identity",
+      "result": "PASS: corruption rejected",
+      "expected_failure": "Polynomial identity failed"
+    },
+    {
+      "test": "equality implications",
+      "result": "PASS: corruption rejected",
+      "expected_failure": "Equality implication 0 failed"
+    }
+  ]
+}

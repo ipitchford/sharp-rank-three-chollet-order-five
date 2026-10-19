@@ -1,0 +1,37 @@
+{
+  "status": "PASS",
+  "arithmetic": "integer and rational; Python standard library only",
+  "gram_dimensions": [
+    52,
+    96,
+    140
+  ],
+  "gram_lower_bound": "1/5",
+  "exact_gershgorin_margins": [
+    "67341785881203979844732172689365826713404626584801780120433/269367144413388135691008467779190784000000000000000000000000",
+    "31249999711143725543467/125000000000000000000000",
+    "350738464413407599609596952967581572453200468931408179819/1402953877153063206724002436349952000000000000000000000000"
+  ],
+  "determinant_terms": 25,
+  "permutations": 120,
+  "unaveraged_residual_monomials": 2019,
+  "nonzero_averaged_residual_monomials": 0,
+  "equality_implications": 4,
+  "sharpness": {
+    "permanent": "3",
+    "square_permanent": "39/16",
+    "ratio": "13/48",
+    "rank": 3
+  },
+  "seconds": 0.8214371204376221,
+  "certificate_sha256": "8939943639c7e535061ad30b05895cd6452aed464fa7cd69f8279acc4c43f4f1",
+  "input_sha256": {
+    "sos_certificate.json": "8939943639c7e535061ad30b05895cd6452aed464fa7cd69f8279acc4c43f4f1",
+    "certificate_basis0.json": "945c89d8556ab17e1905cb8f3b0e75c54bc3df21bc619707007869da09321e27",
+    "certificate_basis1.json": "a8f12053e3caa30cfa554abda5d4cc1cd462409ee7a51be98a58eb27eaa522ce",
+    "certificate_basis2.json": "eac6488433498ef013967d868ae9757c612431b2ff4bbf13fc7ccb9cef262b0c",
+    "relation_generators.json": "e852754043131d1582e6bf15b62a7abc0c5dbb73a6e89a6413d95a127e05dde5",
+    "equality_certificate.json": "d181c7e3a9d227cc14bf159feb5a7b3f34517b7e716095bcc2ea707c6b463468",
+    "verify.py": "39aa4edf8acbf27f1364a5db021fe75efb92fff04a6403c2a11b21df86b71223"
+  }
+}

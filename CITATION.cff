@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "If you use this research package, please cite it using the metadata below."
+title: "Sharp rank-three Chollet inequalities in order five"
+type: software
+authors:
+  - name: Anonymous
+version: 1.0.0
+date-released: 2026-10-19
+doi: 10.5281/zenodo.23474553
+url: "https://github.com/ipitchford/sharp-rank-three-chollet-order-five"
+repository-code: "https://github.com/ipitchford/sharp-rank-three-chollet-order-five"
+license: CC0-1.0
+keywords:
+  - permanent inequalities
+  - positive-semidefinite matrices
+  - rank-three correlation matrices
+  - sum-of-squares certificate
+  - exact computer-assisted proof
+preferred-citation:
+  type: article
+  title: "Sharp rank-three Chollet inequalities in order five: An exact rational certificate and complete equality classifications"
+  authors:
+    - name: Anonymous
+  year: 2026
+  doi: 10.5281/zenodo.23474553

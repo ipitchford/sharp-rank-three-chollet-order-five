@@ -1,0 +1,8 @@
+proof.aux
+proof.fdb_latexmk
+proof.fls
+proof.log
+proof.out
+proof.txt
+__pycache__/
+*.pyc

@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "1.0",
+  "creator": "Anonymous",
+  "version": "1.0.0",
+  "claims": [
+    {
+      "id": "self-rank3-order5",
+      "statement": "Every real 5x5 correlation matrix C of rank at most 3 satisfies per(C o C) <= (13/48) per(C)^2.",
+      "status": "proved-by-written-reduction-and-exact-certificate",
+      "sharp": true,
+      "equality": "signed simultaneous permutations of J2 direct-sum E3",
+      "evidence": ["proof.pdf#theorem-1", "verify.py", "sos_certificate.json", "equality_certificate.json"]
+    },
+    {
+      "id": "mixed-rank3-order5",
+      "statement": "Real 5x5 positive-semidefinite matrices A and B of rank at most 3 satisfy per(A o B) <= (13/48) per(A) per(B).",
+      "status": "analytic-consequence",
+      "sharp": true,
+      "equality": "positive-diagonal normalizations have a common 2+3 block partition and independent diagonal sign switches; a zero diagonal in either matrix gives degenerate equality",
+      "evidence": ["proof.pdf#theorem-5", "verify_mixed_extension.py"]
+    }
+  ],
+  "excluded": [
+    "complex-matrix sharp coefficient",
+    "rank 4 or unrestricted-rank extension",
+    "general Chollet conjecture",
+    "formal proof-assistant verification",
+    "exhaustive historical priority"
+  ]
+}

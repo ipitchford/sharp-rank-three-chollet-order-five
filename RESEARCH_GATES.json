@@ -1,0 +1,145 @@
+{
+  "contributionMap": [
+    {
+      "claim": "The sharp coefficient 13/48 and witness J2 direct-sum E3 for the real order-five rank-three self-product problem",
+      "unit": "object",
+      "paperLocation": "Theorem 1 and Statement and scope",
+      "searches": [{"date": "2026-10-19", "query": "rank three order five sharp Chollet 13/48 permanent"}],
+      "closestPriorWork": "Zeng, Liu and Ratnavelu (2026) proposed the same coefficient and witness and proved structured cases plus local maximality.",
+      "verdict": "known-cited"
+    },
+    {
+      "claim": "A global proof of the sharp real order-five rank-at-most-three self-Chollet inequality with complete equality classification",
+      "unit": "statement",
+      "paperLocation": "Theorem 1 and Sections 2–4",
+      "searches": [
+        {"date": "2026-10-19", "query": "\"13/48\" Chollet rank three equality classification"},
+        {"date": "2026-10-19", "query": "order five rank three self Chollet global proof"}
+      ],
+      "closestPriorWork": "Zeng, Liu and Ratnavelu (2026) state the global problem and prove selected families; Li, Zhao and Luo (2026) claim the weaker coefficient-one inequality in a broader domain.",
+      "verdict": "new-in-bounded-search"
+    },
+    {
+      "claim": "An explicit exact rational covariant sum-of-squares certificate modulo rank-three Gram minors",
+      "unit": "proof",
+      "paperLocation": "Section 2 and the complete certificate files",
+      "searches": [
+        {"date": "2026-10-19", "query": "sum of squares certificate Chollet permanent rank three"},
+        {"date": "2026-10-19", "query": "rational certificate permanent inequality Gram minors"}
+      ],
+      "closestPriorWork": "Gatermann–Parrilo give general symmetry-reduced SOS methods and Peyrl–Parrilo give rational reconstruction methods; no identical certificate was found.",
+      "verdict": "new-in-bounded-search"
+    },
+    {
+      "claim": "Symmetry-reduced sum-of-squares discovery followed by rational reconstruction and exact coefficient checking",
+      "unit": "method",
+      "paperLocation": "How the certificate was constructed",
+      "searches": [
+        {"date": "2026-10-19", "query": "symmetry reduced sum of squares Gatermann Parrilo"},
+        {"date": "2026-10-19", "query": "rational reconstruction numerical sum of squares Peyrl Parrilo"}
+      ],
+      "closestPriorWork": "The general method is established by Gatermann–Parrilo (2004) and Peyrl–Parrilo (2008).",
+      "verdict": "known-cited"
+    },
+    {
+      "claim": "The sharp mixed inequality and complete equality classification for two real PSD order-five rank-at-most-three matrices",
+      "unit": "identification",
+      "paperLocation": "Theorem 5",
+      "searches": [
+        {"date": "2026-10-19", "query": "mixed Chollet inequality 13/48 equality cases rank three"},
+        {"date": "2026-10-19", "query": "permanent Hadamard product Cauchy Schwarz equality block partition"}
+      ],
+      "closestPriorWork": "The inequality follows by the classical permutation-monomial Cauchy–Schwarz transfer once the self theorem is known; no identical complete equality classification was found.",
+      "verdict": "new-in-bounded-search"
+    }
+  ],
+  "sourcesReadInFull": [
+    {
+      "citation": "Zeng, Liu and Ratnavelu (2026), Sharp self-Chollet inequalities in order five",
+      "date": "2026-10-19",
+      "usedFor": "Exact source problem, proposed coefficient, witness, structured cases and local-maximality boundary",
+      "readWhat": "Abstract, theorem statements, equation (7), sharp-witness discussion and cited scope",
+      "evidenceLocator": "https://doi.org/10.20944/preprints202608.1240.v1"
+    },
+    {
+      "citation": "Li, Zhao and Luo (2026), Chollet's permanent conjecture through order six via border induction",
+      "date": "2026-10-19",
+      "usedFor": "Broader-domain coefficient-one context and transfer relationship",
+      "readWhat": "Abstract, principal theorem statement and scope",
+      "evidenceLocator": "https://www.preprints.org/manuscript/202608.2196"
+    },
+    {
+      "citation": "Gatermann and Parrilo (2004), Symmetry groups, semidefinite programs, and sums of squares",
+      "date": "2026-10-19",
+      "usedFor": "Method precedent for symmetry-reduced SOS certificates",
+      "readWhat": "Abstract and method sections describing symmetry reduction of SOS problems",
+      "evidenceLocator": "https://doi.org/10.1016/j.jpaa.2003.12.011"
+    },
+    {
+      "citation": "Peyrl and Parrilo (2008), Computing sum of squares decompositions with rational coefficients",
+      "date": "2026-10-19",
+      "usedFor": "Method precedent for rational reconstruction of numerical SOS data",
+      "readWhat": "Abstract and sections specifying numerical-to-rational certificate recovery",
+      "evidenceLocator": "https://doi.org/10.1016/j.tcs.2008.09.025"
+    }
+  ],
+  "limitationTriage": [
+    {
+      "limitation": "The certificate generator, solver transcript and rational-repair trace are unavailable.",
+      "closingQuestion": "Can the construction be regenerated from a fresh implementation without changing the proof object?",
+      "triedOrSearched": "The surviving package and review bundle were inventoried; no generator or repair trace was present.",
+      "estimatedCost": "More than two hours and potentially substantial solver reconstruction; exact validity does not depend on it.",
+      "cheap": false,
+      "decision": "OPEN",
+      "reasonOpen": "This is a construction-reproducibility limitation, not a gap in checking the delivered exact certificate."
+    },
+    {
+      "limitation": "The theorem is restricted to real matrices of order five and rank at most three.",
+      "closingQuestion": "Does an equally sharp classification extend to complex matrices or higher rank?",
+      "triedOrSearched": "Related complex coefficient-one and rank-four results were checked; a rank-four diagnostic disproves the 13/48 coefficient there.",
+      "estimatedCost": "Open-ended research beyond the revised theorem.",
+      "cheap": false,
+      "decision": "OPEN",
+      "reasonOpen": "The rank-four example rules out a direct extension, and the complex problem needs different proof machinery."
+    },
+    {
+      "limitation": "The initially suggested two-matrix consequence lacked an equality classification.",
+      "closingQuestion": "Can equality be classified using self-equality and permutation-monomial support?",
+      "triedOrSearched": "The Cauchy–Schwarz equality condition, diagonal normalization, sign invariance, support partition and zero-row branch were analysed and independently re-reviewed.",
+      "estimatedCost": "Under two hours, no paid compute.",
+      "cheap": true,
+      "decision": "CLOSED"
+    },
+    {
+      "limitation": "The sharp coefficient might appear to extend unchanged to rank four.",
+      "closingQuestion": "Is there a simple rank-four counterexample to the same coefficient?",
+      "triedOrSearched": "The explicit matrix J2 direct-sum I3 was evaluated exactly and yields ratio 1/2.",
+      "estimatedCost": "Under one hour, no paid compute.",
+      "cheap": true,
+      "decision": "CLOSED"
+    },
+    {
+      "limitation": "The prior-art search is targeted rather than exhaustive.",
+      "closingQuestion": "Can universal priority be certified?",
+      "triedOrSearched": "Exact theorem phrases, coefficient, witness, method and mixed form were searched across primary scholarly sources.",
+      "estimatedCost": "Unbounded; universal negative literature claims cannot be certified by a finite search.",
+      "cheap": false,
+      "decision": "OPEN",
+      "reasonOpen": "The release therefore states a dated bounded-search result rather than universal priority."
+    }
+  ],
+  "extensionScout": {
+    "by": "AI-assisted academic reviewer and revision agent",
+    "date": "2026-10-19",
+    "proposals": [
+      "derive the sharp two-matrix consequence and determine all equality cases",
+      "test whether the 13/48 coefficient survives rank four",
+      "make the certificate schema and construction boundary explicit"
+    ],
+    "actions": [
+      "proved and re-reviewed the mixed theorem with complete equality classification",
+      "added the exact rank-four diagnostic J2 direct-sum I3",
+      "added a file schema, AI index, construction account and explicit missing-history qualification"
+    ]
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "title": "Sharp rank-three Chollet inequalities in order five: An exact rational certificate and complete equality classifications",
+  "upload_type": "publication",
+  "publication_type": "article",
+  "description": "An exact computer-assisted proof of the sharp real order-five rank-at-most-three self-Chollet inequality, with complete equality classification, together with the sharp two-matrix consequence and its equality cases. The deposit includes the paper, rational certificate, exact standard-library checker, mutation tests, discovery record, assurance statement and AI index. The proposed coefficient and witness are credited to Zeng, Liu and Ratnavelu; the contribution is the checked global proof and classifications.",
+  "creators": [
+    {"name": "Anonymous"}
+  ],
+  "publication_date": "2026-10-19",
+  "version": "1.0.0",
+  "access_right": "open",
+  "license": "cc-zero",
+  "keywords": [
+    "permanent inequalities",
+    "positive-semidefinite matrices",
+    "rank-three correlation matrices",
+    "sum-of-squares certificate",
+    "exact computer-assisted proof"
+  ],
+  "related_identifiers": [
+    {"identifier": "https://doi.org/10.20944/preprints202608.1240.v1", "relation": "isDerivedFrom", "scheme": "doi"},
+    {"identifier": "https://github.com/ipitchford/sharp-rank-three-chollet-order-five", "relation": "isSupplementTo", "scheme": "url"}
+  ],
+  "notes": "The rational certificate can be checked exactly, but the original generator, solver transcript and rational-repair trace are unavailable. The release is internally replayed and AI-reviewed; it is not externally peer reviewed or proof-assistant formalised."
+}

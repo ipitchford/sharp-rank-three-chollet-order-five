@@ -1,0 +1,317 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=25mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,booktabs,array}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+\usepackage{enumitem}
+\hypersetup{pdftitle={Sharp rank-three Chollet inequalities in order five},pdfauthor={Anonymous},pdfsubject={Exact rational certificate and complete equality classifications}}
+\newcommand{\per}{\operatorname{per}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\Sym}{\operatorname{Sym}}
+\newcommand{\calA}{\mathcal A}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\title{Sharp rank-three Chollet inequalities in order five\\[3pt]\large An exact rational certificate and complete equality classifications}
+\author{Anonymous}
+\date{19 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+For every real $5\times5$ correlation matrix $C$ of rank at most three,
+\[
+ \per(C\circ C)\leq \frac{13}{48}\per(C)^2.
+\]
+Equality holds exactly, up to simultaneous permutation and diagonal sign switching, at $J_2\oplus E_3$, where $E_3$ has diagonal entries $1$ and off-diagonal entries $-1/2$. The proof uses an explicit rational sum-of-squares certificate with scalar, vector and traceless symmetric-tensor covariants. Three rational Gram matrices, of orders $52$, $96$ and $140$, are positive definite with a certified lower bound $1/5$. An exact polynomial identity differs from the target only by multiples of $4\times4$ Gram minors. A separate Python-standard-library checker expands all $120$ relabellings and verifies every coefficient. Four additional exact scalar identities yield the equality classification. The certificate files are an integral part of this computer-assisted proof; no floating-point computation is needed to check it. As an analytic consequence, for real positive-semidefinite $5\times5$ matrices $A,B$, each of rank at most three,
+\[
+ \per(A\circ B)\leq \frac{13}{48}\per(A)\per(B).
+\]
+The constant is sharp. When both matrices have positive diagonal, equality is classified by a common $2+3$ block partition after diagonal normalization; zero-row equality cases are stated separately.
+\end{abstract}
+
+\section{Statement and scope}
+A real correlation matrix is a real symmetric positive-semidefinite matrix with diagonal entries one. For an $n\times n$ matrix $A$, write
+\[
+ \per A=\sum_{\sigma\in S_n}\prod_{i=1}^n a_{i,\sigma(i)}.
+\]
+The symbol $\circ$ denotes the entrywise product. The ratio used below is well defined. Indeed, for nonzero Gram vectors, if $\prod_i(v_i\cdot z)=\sum_\alpha a_\alpha z^\alpha$, direct expansion gives $\per C=\sum_\alpha\alpha!a_\alpha^2>0$. Set
+\[
+ C_\star=J_2\oplus E_3,
+ \qquad E_3=\begin{pmatrix}1&-1/2&-1/2\\-1/2&1&-1/2\\-1/2&-1/2&1\end{pmatrix}.
+\]
+Zeng, Liu and Ratnavelu \cite{ZLR} proposed $13/48$ as the global rank-three constant and established the bound in two structured families, together with local maximality of $C_\star$. Their equation (7) states the unrestricted rank-three problem. The result below concerns that global problem. Subsequent work of Li, Zhao and Luo \cite{LZL} claims the coefficient-one Chollet inequality for arbitrary complex Hermitian positive-semidefinite matrices through order six. That broader-domain statement does not imply the sharp coefficient below, but its permutation-monomial transfer makes the relation between self-products and pairs explicit.
+
+\begin{theorem}\label{thm:main}
+Let $C\in\mathbb R^{5\times5}$ satisfy $C\succeq0$, $c_{ii}=1$ and $\rank C\leq3$. Then
+\begin{equation}\label{eq:main}
+ 48\per(C\circ C)\leq 13\per(C)^2.
+\end{equation}
+Equality holds if and only if
+\[
+ C=D\Pi C_\star\Pi^{\mathsf T}D,
+\]
+where $\Pi$ is a permutation matrix and $D$ is diagonal with entries in $\{1,-1\}$. Consequently the sharp global constant is $\Gamma_{5,3}=13/48$.
+\end{theorem}
+The argument covers every rank-at-most-three correlation matrix, including rank drops and coincident Gram lines. It does not assert a complex-matrix result or a bound without the rank restriction.
+
+\section{The certificate}
+\subsection{Covariants and their scalar products}
+Write $C=(v_i\cdot v_j)_{i,j=1}^5$ with $v_i\in\mathbb R^3$. For a vector $a=(a_{ij})_{1\leq i\leq j\leq5}$ of nonnegative integers, put
+\[
+ m_a(C)=\prod_{i\leq j}c_{ij}^{a_{ij}}.
+\]
+The data files specify finite lists of the following covariants:
+\begin{align*}
+ b_{0,a}(V)&=m_a(C),\\
+ b_{1,(i,j,a)}(V)&=m_a(C)(v_i\times v_j),\quad i<j,\\
+ b_{2,(i,j,a)}(V)&=m_a(C)\left(\frac{v_iv_j^{\mathsf T}+v_jv_i^{\mathsf T}}2-\frac{c_{ij}}3 I_3\right),\quad i\leq j.
+\end{align*}
+The monomial in each entry is chosen so that the covariant has degree two in each $v_i$. The scalar products are the ordinary scalar product, the Euclidean vector product, and the Frobenius matrix product, respectively. In particular,
+\begin{align}
+ (v_i\times v_j)\cdot(v_k\times v_l)
+ &=c_{ik}c_{jl}-c_{il}c_{jk},\label{eq:cross}\\
+ \langle T_{ij},T_{kl}\rangle_{\rm F}
+ &=\tfrac12(c_{ik}c_{jl}+c_{il}c_{jk})-\tfrac13c_{ij}c_{kl},\label{eq:tensor}
+\end{align}
+where $T_{ij}$ denotes the traceless symmetric tensor in the last display. Both identities follow by direct expansion.
+
+For each $s=0,1,2$, an integer matrix $N_s$ and a positive integer $d_s$ define
+\[
+ g_{s,\alpha}(V)=\frac1{d_s}\sum_b (N_s)_{b\alpha}b_{s,b}(V).
+\]
+The corresponding dimensions and denominators are
+\begin{center}
+\begin{tabular}{lrrr}
+\toprule
+Covariant type & Basic covariants & $g$-coordinates & $d_s$\\
+\midrule
+Scalar &73&52&128\\
+Vector &230&96&32768\\
+Traceless symmetric tensor &315&140&67108864\\
+\bottomrule
+\end{tabular}
+\end{center}
+Every basis entry, exponent and integer matrix coefficient appears explicitly in \nolinkurl{certificate_basis0.json}, \nolinkurl{certificate_basis1.json} and \nolinkurl{certificate_basis2.json}. The files use zero-based vector labels and list their coordinate order.
+
+\subsection{How the certificate was constructed}
+The construction follows the symmetry-reduced sum-of-squares strategy of Gatermann and Parrilo \cite{GP} and the numerical-to-rational workflow of Peyrl and Parrilo \cite{PP}. It can be summarized as follows.
+\begin{enumerate}[label=\arabic*.,leftmargin=*]
+\item Enumerate scalar, axial-vector and traceless symmetric-tensor covariants whose total degree is two in each Gram vector. Encode their monomial exponents and tensor labels in the three basis files.
+\item Choose integer column maps $N_s$ from the basic covariants to smaller coordinate systems. The delivered columns all vanish on the equality orbit, but the retained construction record does not determine whether this condition was imposed before the numerical solve or emerged from the chosen reduction.
+\item Expand every covariant inner product by \eqref{eq:cross}--\eqref{eq:tensor}. Introduce symmetric Gram variables $Q_s$ and coefficients $\lambda_j$ for monomial multiples of the $4\times4$ minors. Match every coefficient in \eqref{eq:certificate}. These are linear equations in the unknown entries of $Q_s$ and the $\lambda_j$, together with semidefinite constraints on the $Q_s$.
+\item Solve the resulting symmetry-reduced feasibility problem numerically, round candidate data to rationals, and repair the coefficient equations exactly. Finally find rational $L_s$ for which $Q_s-L_sL_s^{\mathsf T}$ is strictly diagonally dominant by more than $1/5$.
+\item Discard numerical feasibility as proof evidence and retain only the rational data checked by \nolinkurl{verify.py}.
+\end{enumerate}
+The package does not include the generator, solver transcript or rational-repair trace. Consequently it supports exact checking of the finished certificate, but not byte-for-byte regeneration of its construction. No numerical repair-size claim is used here.
+
+Let $Q_s$ be the rational matrices in \nolinkurl{sos_certificate.json}, and define
+\[
+ S_s(V)=\sum_{\alpha,\beta}(Q_s)_{\alpha\beta}
+       \langle g_{s,\alpha}(V),g_{s,\beta}(V)\rangle.
+\]
+Equations \eqref{eq:cross}--\eqref{eq:tensor} express $S_s$ as a polynomial in the entries of a formal symmetric matrix $C$; denote this polynomial by $S_s(C)$ as well. Define the relabelling average
+\[
+ (\calA f)(C)=\frac1{120}\sum_{\sigma\in S_5}f\bigl((c_{\sigma(i),\sigma(j)})_{i,j}\bigr).
+\]
+
+\begin{lemma}[Exact certificate]\label{lem:certificate}
+The supplied rational data satisfy the following two assertions.
+\begin{enumerate}[label=(\roman*),nosep]
+\item $Q_s\succeq\tfrac15 I$ for $s=0,1,2$.
+\item As a polynomial identity in the fifteen independent entries of a formal symmetric $5\times5$ matrix,
+\begin{equation}\label{eq:certificate}
+ 13\per(C)^2-48\per(C\circ C)
+ =\calA\left(\sum_{s=0}^2 S_s(C)
+   +\sum_{j=1}^{25}\lambda_j m_{a_j}(C)\det C[I_j,J_j]\right).
+\end{equation}
+Here $I_j,J_j$ have cardinality four. The lists $(I_j,J_j,a_j)$ are in \nolinkurl{relation_generators.json}, and the rational $\lambda_j$ are in \nolinkurl{sos_certificate.json}.
+\end{enumerate}
+\end{lemma}
+\begin{proof}[Exact verification of the lemma]
+The checker \nolinkurl{verify.py} reads the rational data and performs the following finite algebraic checks independently of the discovery and certificate-generation routines.
+
+For positivity, it reads rational matrices $L_s$ and forms $W_s=Q_s-L_sL_s^{\mathsf T}$. In integer arithmetic it verifies symmetry and
+\begin{equation}\label{eq:dd}
+ (W_s)_{ii}-\sum_{j\ne i}|(W_s)_{ij}|>\frac15
+ \quad\text{for every row }i.
+\end{equation}
+The inequality $2|x_ix_j|\leq x_i^2+x_j^2$ therefore gives $W_s\succeq\tfrac15I$. Since $L_sL_s^{\mathsf T}\succeq0$, assertion (i) follows. The actual minimum certified row margins exceed $0.249999996$, but only the rational bound $1/5$ is used.
+
+For the identity, the checker constructs $\per C$ from all $120$ permutations, expands its square and the entrywise-square permanent, and constructs each $S_s$ from the listed covariants using \eqref{eq:cross}--\eqref{eq:tensor}. It expands each determinant using its $24$ signed permutation terms. After clearing all denominators, it expands the sum over all $120$ relabellings of the residual in \eqref{eq:certificate}. Every resulting coefficient is exactly zero. This is coefficient verification, not evaluation at finitely many matrices.
+
+The checker uses only integer and rational operations from the Python standard library. Its recorded result is \texttt{ALL EXACT CHECKS PASSED}. The full certificate is necessary to reproduce this lemma; the numerical search output is not an input to the checker.
+\end{proof}
+
+\section{The global bound and sharpness}
+\begin{proof}[Proof of the inequality in Theorem \ref{thm:main}]
+Choose real three-dimensional Gram vectors for $C$. Every $4\times4$ minor of $C$ vanishes because $\rank C\leq3$. Thus the determinant terms in \eqref{eq:certificate} vanish, including after every relabelling.
+
+For each covariant type and each relabelling, $S_s(V)\geq0$. Indeed, if the covariants take values in a Euclidean space with coordinates indexed by $r$, then
+\[
+ S_s(V)=\sum_r z_r^{\mathsf T}Q_s z_r\geq \frac15\sum_r\|z_r\|^2,
+ \qquad z_r=(g_{s,\alpha}(V)_r)_\alpha.
+\]
+Equation \eqref{eq:certificate} now proves \eqref{eq:main} globally.
+\end{proof}
+
+To verify sharpness, take
+\[
+ v_1=v_2=e_3,\quad v_3=e_1,\quad
+ v_4=-\tfrac12e_1+\tfrac{\sqrt3}{2}e_2,\quad
+ v_5=-\tfrac12e_1-\tfrac{\sqrt3}{2}e_2.
+\]
+Their Gram matrix is $C_\star$ and has rank three. Direct permutation expansion gives
+\[
+ \per C_\star=3,\qquad
+ \per(C_\star\circ C_\star)=\frac{39}{16},\qquad
+ \frac{\per(C_\star\circ C_\star)}{\per(C_\star)^2}=\frac{13}{48}.
+\]
+The checker independently verifies these rational values and a rational Gram factorisation using the positive diagonal metric $\operatorname{diag}(1,3,1)$.
+
+\section{All equality cases}
+For a triple $T=\{i,j,k\}$, write $\tau_T=c_{ij}c_{jk}c_{ki}$. A bar denotes the complement in $\{1,2,3,4,5\}$.
+
+\begin{lemma}[Equality implications]\label{lem:equality}
+If equality holds in \eqref{eq:main}, then the following hold for all distinct labels to which the formulas apply:
+\begin{align}
+ 1+8\sum_{|T|=3}\tau_T&=0,\label{eq:e0}\\
+ (1-c_{ab}^2)\tau_{\overline{\{a,b\}}}&=0,\label{eq:e1}\\
+ c_{ab}c_{bc}c_{cd}c_{da}&=0,\label{eq:e2}\\
+ c_{ab}^2+8\tau_{\overline{\{a,b\}}}
+       +2\sum_{k\notin\{a,b\}}\tau_{\{a,b,k\}}&=0.\label{eq:e3}
+\end{align}
+\end{lemma}
+\begin{proof}
+At equality the average in \eqref{eq:certificate} is zero. Every term is nonnegative, and $Q_s\succeq\tfrac15I$. Hence every $g_{s,\alpha}$ vanishes at every relabelling of the Gram vectors.
+
+The file \nolinkurl{equality_certificate.json} supplies exact linear identities expressing homogeneous versions of the four left-hand sides above in the columns of the integer scalar basis matrix $N_0$. Missing degrees are supplied by diagonal factors. For example, the homogeneous version of \eqref{eq:e1} for $\{a,b\}=\{1,2\}$ is
+\[
+ (c_{11}c_{22}-c_{12}^2)c_{34}c_{45}c_{53}.
+\]
+The homogeneous version of \eqref{eq:e2} is the four-cycle monomial times the remaining diagonal entry. For \eqref{eq:e0}, the constant $1$ is replaced by $\prod_i c_{ii}$, and each triangle receives the other two diagonal factors. The same convention applies to \eqref{eq:e3}. The checker verifies all four polynomial identities exactly, and their coefficients on the optional determinant generators are zero. Since the scalar covariants vanish and $c_{ii}=1$, the four displayed implications follow. Relabelling gives all required choices of indices.
+\end{proof}
+
+\begin{proof}[Proof of the equality classification]
+By \eqref{eq:e0}, at least one triangle product is negative. Relabel so that $\tau_{\{3,4,5\}}<0$. Equation \eqref{eq:e1} gives $c_{12}^2=1$. The unit Gram vectors $v_1,v_2$ are therefore parallel. A sign switch makes $v_1=v_2$, so $c_{12}=1$. Put
+\[
+ x_k=c_{1k}=c_{2k},\qquad k=3,4,5.
+\]
+Apply \eqref{eq:e2} to the cycle $1,k,2,l$. It gives $x_k^2x_l^2=0$ for distinct $k,l\in\{3,4,5\}$. Thus at most one $x_k$ is nonzero.
+
+Suppose $x_k\ne0$, and denote the other two indices by $l,m$. Apply \eqref{eq:e3} to the edge $\{1,k\}$. Its complementary triangle has product
+$\tau_{\{2,l,m\}}=x_lx_mc_{lm}=0$. In its triangle sum, only the triangle $\{1,k,2\}$ can contribute, and its product is $x_k^2$. Therefore \eqref{eq:e3} becomes $3x_k^2=0$, a contradiction. All three $x_k$ vanish.
+
+The matrix is now $J_2\oplus D$ for a $3\times3$ correlation matrix $D$. Equation \eqref{eq:e0} gives $\tau_{\{3,4,5\}}=-1/8$. For each edge of that triangle, equation \eqref{eq:e3} gives $c_{ij}^2+2(-1/8)=0$, so all three absolute values are $1/2$. Their product is negative. Individual sign switches therefore make all three entries $-1/2$. The resulting matrix is $C_\star$.
+
+Conversely, the sharpness calculation gives equality at $C_\star$. Simultaneous permutations and diagonal sign switches preserve both permanents in the ratio, completing the proof.
+\end{proof}
+
+\begin{corollary}
+For every real positive-semidefinite $5\times5$ matrix $A$ of rank at most three,
+\[
+ \per(A\circ A)\leq\frac{13}{48}\per(A)^2.
+\]
+If all diagonal entries are positive, equality holds exactly when diagonal normalisation gives a signed permutation of $C_\star$. A zero diagonal entry forces a zero row and column, in which case both sides vanish.
+\end{corollary}
+\begin{proof}
+When all diagonal entries are positive, put $D=\operatorname{diag}(a_{ii}^{-1/2})$ and $C=DAD$. Both sides of the inequality acquire the same factor $\prod_i D_{ii}^4$. The zero-diagonal assertion follows from positive semidefiniteness.
+\end{proof}
+
+\begin{theorem}[Sharp two-matrix form]\label{thm:mixed}
+Let $A$ and $B$ be real positive-semidefinite $5\times5$ matrices. Suppose that
+$\rank A\leq3$ and $\rank B\leq3$. Then
+\begin{equation}\label{eq:mixed}
+ \per(A\circ B)\leq\frac{13}{48}\per(A)\per(B).
+\end{equation}
+The constant is sharp. If both matrices have positive diagonal, equality holds precisely when their diagonal normalizations have the form
+\[
+ D_A\Pi C_\star\Pi^{\mathsf T}D_A,
+ \qquad
+ D_B\Pi C_\star\Pi^{\mathsf T}D_B
+\]
+for a common permutation matrix $\Pi$ and (possibly different) diagonal sign matrices $D_A,D_B$. If either matrix has a zero diagonal entry, both sides of \eqref{eq:mixed} vanish and equality holds.
+\end{theorem}
+\begin{proof}
+For a matrix $X$ and $\sigma\in S_5$, set $x_\sigma=\prod_i x_{i,\sigma(i)}$. Cauchy--Schwarz gives
+\[
+ \per(A\circ B)=\sum_\sigma a_\sigma b_\sigma
+ \leq\sqrt{\per(A\circ A)\per(B\circ B)}.
+\]
+The Schur product theorem makes $A\circ B$ positive semidefinite, so its permanent is nonnegative; hence the displayed inequality has the required sign. Applying the self-product inequality to $A$ and $B$ proves \eqref{eq:mixed}. Taking $A=B$ equal to a positive diagonal scaling of $C_\star$ proves sharpness.
+
+Suppose first that both diagonals are positive and equality holds. Diagonal normalization changes all three quantities in \eqref{eq:mixed} by the same positive factors, so assume $A$ and $B$ are correlation matrices. Equality in the two successive bounds forces equality in each self-product inequality. Theorem~\ref{thm:main} therefore puts both matrices in the signed-permutation orbit of $C_\star$. Equality in Cauchy--Schwarz makes their permutation-monomial vectors proportional. Their identity-permutation coordinates both equal one, so the vectors are equal.
+
+Diagonal sign switching leaves every permutation monomial unchanged. For $C_\star$, a permutation monomial is nonzero exactly when the permutation preserves its distinguished two-element block (and hence the complementary three-element block). Equality of the two monomial vectors therefore forces the same unordered $2+3$ partition for $A$ and $B$, which is the asserted common $\Pi$. Conversely, matrices with a common partition have identical normalized permutation-monomial vectors and each saturates the self-product theorem, so equality holds.
+
+Finally, a zero diagonal entry of a positive-semidefinite matrix forces the corresponding row and column to vanish. Its permanent and the permanent of its Hadamard product with any other matrix are then zero, proving the degenerate assertion.
+\end{proof}
+
+\section{Reproduction, data map, checks and limits}
+The proof-bearing files are the three basis files, \nolinkurl{sos_certificate.json}, \nolinkurl{relation_generators.json}, \nolinkurl{equality_certificate.json}, and the independent checker. Run
+\begin{verbatim}
+python3 verify.py --report verification_report.json
+python3 test_mutations.py
+python3 verify_mixed_extension.py
+\end{verbatim}
+The first command checks positive definiteness, the complete coefficient identity, the four equality implications, and the sharpness witness. The second deliberately corrupts the positivity data, the global identity and an equality implication; all three corruptions are rejected. The third is a supplementary exact regression test for the mixed equality classification: it checks the ten block partitions, every diagonal sign switch, and a mismatched-partition negative control. The manuscript proof, not that finite test, establishes the mixed theorem. The verification report records zero nonzero averaged residual monomials. In the recorded execution, the exact checker took approximately $1.2$ seconds; runtime depends on the environment.
+
+The proof-bearing data have the following schema.
+\begin{description}[style=nextline,leftmargin=1em,labelindent=0pt,itemsep=2pt]
+\item[\nolinkurl{certificate_basis0.json}, \nolinkurl{certificate_basis1.json}, \nolinkurl{certificate_basis2.json}]
+Basic covariants, exponent vectors, reduced integer maps $N_s$, denominators $d_s$, and coordinate order.
+\item[\nolinkurl{sos_certificate.json}]
+Rational matrices $Q_s,L_s$ and coefficients $\lambda_j$.
+\item[\nolinkurl{relation_generators.json}]
+Row sets $I_j$, column sets $J_j$, and monomial multipliers for the $4\times4$ minors.
+\item[\nolinkurl{equality_certificate.json}]
+Exact scalar-basis expressions for \eqref{eq:e0}--\eqref{eq:e3}.
+\item[\nolinkurl{verification_report.json}]
+Machine-readable results and exact certificate fingerprint.
+\end{description}
+
+The certificate was discovered using numerical invariant sum-of-squares feasibility and then repaired to an exact rational identity. Neither the optimiser nor a tolerance appears in the verification argument. The retained discovery log records 500 starts, of which 79 carry a successful termination flag; these runs are non-proof discovery data. The generator and repair trace are unavailable, so the construction itself is not reproducible from this package.
+
+The result is an internally replayed computer-assisted proof, not a proof-assistant formalisation or an externally peer-reviewed theorem. The exact certificate and its separate checker reduce the remaining review task to the written reduction, the checker, and its finite rational input. A targeted literature search on 14 October 2026 found the rank-three constant still stated as open in the source preprint; this is not an exhaustive priority audit.
+
+\paragraph{Scope check.} The rank restriction is essential to the statement: $C=I_5$ has self-Chollet ratio one and rank five. It is not in the theorem's domain. The equality witness has rank exactly three, so the sharp constant is genuinely attained in the specified domain.
+
+Already at rank four the coefficient fails: $J_2\oplus I_3$ has $\per(C)=2$ and $\per(C\circ C)=2$, hence ratio $1/2>13/48$.
+
+\paragraph{Certificate fingerprint.} SHA-256 of \nolinkurl{sos_certificate.json}:\par
+\smallskip\noindent\texttt{8939943639c7e535061ad30b05895cd6452aed464fa7cd69f8279acc4c43f4f1}
+
+\section*{Declarations}
+\paragraph{Data and code availability.} The versioned proof supplement contains the manuscript source, exact rational certificates, checker, corruption tests, discovery log and hash manifest. Its persistent repository, release and DOI identifiers are recorded in the release metadata accompanying this version.
+\paragraph{Author contributions.} Anonymous: conceptualization, formal analysis, software, validation, visualization, writing and revision.
+\paragraph{Funding.} No external funding was reported.
+\paragraph{Conflicts of interest.} No conflicts of interest were reported.
+\paragraph{Ethics.} Not applicable; this theoretical study involved no human participants, animals or personal data.
+\paragraph{Use of AI.} AI systems assisted with exploratory research, exact computation, drafting and review. The mathematical claims rest on the written argument and inspectable certificate, not on model authority. The public provenance record identifies the tools and assurance limits.
+
+\begin{thebibliography}{4}
+\bibitem{ZLR}
+Zeng, Z., Liu, H., \& Ratnavelu, K. (2026, August 18).
+\emph{Sharp self-Chollet inequalities in order five: Rank two and structured rank three}
+[Preprint, version 1]. Preprints.org.
+\url{https://doi.org/10.20944/preprints202608.1240.v1}.
+\bibitem{LZL}
+Li, Q., Zhao, Q., \& Luo, W. (2026, August 31).
+\emph{Chollet's permanent conjecture through order six via border induction}
+[Preprint, version 1]. Preprints.org.
+\url{https://www.preprints.org/manuscript/202608.2196}.
+\bibitem{GP}
+Gatermann, K., \& Parrilo, P. A. (2004).
+Symmetry groups, semidefinite programs, and sums of squares.
+\emph{Journal of Pure and Applied Algebra}, 192(1--3), 95--128.
+\url{https://doi.org/10.1016/j.jpaa.2003.12.011}.
+\bibitem{PP}
+Peyrl, H., \& Parrilo, P. A. (2008).
+Computing sum of squares decompositions with rational coefficients.
+\emph{Theoretical Computer Science}, 409(2), 269--281.
+\url{https://doi.org/10.1016/j.tcs.2008.09.025}.
+\end{thebibliography}
+\end{document}
